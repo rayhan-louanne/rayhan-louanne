@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour Louanne ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+        }
+        .handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+        .floating-heart {
+            position: absolute;
+            color: #ff4b4b;
+            animation: float 6s ease-in infinite;
+            opacity: 0;
+            z-index: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-rose-100 via-purple-100 to-sky-100 overflow-x-hidden selection:bg-rose-200 selection:text-rose-900">
+
+    <!-- Container for Hearts -->
+    <div id="hearts-container" class="fixed inset-0 pointer-events-none"></div>
+
+    <main class="container mx-auto px-4 py-12 max-w-2xl relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center mb-12 animate-fade-in-down">
+            <h1 class="text-5xl md:text-6xl text-rose-500 handwriting mb-2 drop-shadow-sm">Salut Louanne</h1>
+            <p class="text-slate-600 text-lg">Déjà 1 semaine ? Le temps passe vite...</p>
+        </div>
+
+        <!-- The Map / Distance Card -->
+        <div class="bg-glass rounded-3xl p-8 shadow-xl mb-8 transform hover:scale-[1.02] transition-transform duration-300 border border-white/50">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 text-center">Le Choc des Départements</h2>
+            
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 relative">
+                <!-- Toulon -->
+                <div class="text-center w-full">
+                    <div class="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3 shadow-inner">
+                        <span class="text-4xl">☀️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-700">Toulon (83)</h3>
+                    <p class="text-sm text-slate-500">La mer, le soleil, et moi</p>
+                </div>
+
+                <!-- Connector -->
+                <div class="hidden md:flex flex-col items-center justify-center w-full">
+                    <div class="border-t-2 border-dashed border-rose-300 w-full relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white px-2 text-rose-500">
+                            ❤️
+                        </div>
+                    </div>
+                    <p class="text-xs text-rose-400 mt-2 font-bold tracking-widest uppercase">Connexion en cours</p>
+                </div>
+                
+                <!-- Mobile Connector -->
+                <div class="md:hidden text-2xl text-rose-400 animate-bounce">
+                    ⬇️ ❤️ ⬇️
+                </div>
+
+                <!-- Paris/95 -->
+                <div class="text-center w-full">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 shadow-inner">
+                        <span class="text-4xl">🗼</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-700">Le 95 (Paris)</h3>
+                    <p class="text-sm text-slate-500">Le style, la classe, et toi</p>
+                </div>
+            </div>
+            
+            <p class="text-center mt-6 text-slate-600 italic">
+                "Ils disent que les opposés s'attirent... <br>Le Sud apporte la chaleur, le Nord apporte le charme."
+            </p>
+        </div>
+
+        <!-- Counter Card -->
+        <div class="bg-white rounded-3xl p-8 shadow-lg mb-8 border-l-8 border-rose-400">
+            <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <span>⏱️</span> Notre Chrono
+            </h3>
+            <div class="grid grid-cols-4 gap-2 text-center" id="timer">
+                <div class="bg-rose-50 p-3 rounded-lg">
+                    <span id="days" class="block text-2xl font-bold text-rose-600">0</span>
+                    <span class="text-xs text-rose-400 uppercase">Jours</span>
+                </div>
+                <div class="bg-rose-50 p-3 rounded-lg">
+                    <span id="hours" class="block text-2xl font-bold text-rose-600">0</span>
+                    <span class="text-xs text-rose-400 uppercase">Heures</span>
+                </div>
+                <div class="bg-rose-50 p-3 rounded-lg">
+                    <span id="minutes" class="block text-2xl font-bold text-rose-600">0</span>
+                    <span class="text-xs text-rose-400 uppercase">Min</span>
+                </div>
+                <div class="bg-rose-50 p-3 rounded-lg">
+                    <span id="seconds" class="block text-2xl font-bold text-rose-600">0</span>
+                    <span class="text-xs text-rose-400 uppercase">Sec</span>
+                </div>
+            </div>
+            <p class="text-center mt-4 text-sm text-slate-400">Depuis notre premier "Salut"</p>
+        </div>
+
+        <!-- The "Ask" Section -->
+        <div class="bg-gradient-to-r from-rose-500 to-pink-600 rounded-3xl p-8 shadow-xl text-white text-center relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-3xl handwriting mb-6">Petite question importante...</h2>
+                <p class="mb-8 text-rose-100">Ça ne fait qu'une semaine, mais je me demandais...</p>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 mb-8 border border-white/20">
+                    <p class="text-lg font-bold">Est-ce que tu me gardes une place dans ton agenda pour qu'on se voit un jour ?</p>
+                    <p class="text-sm mt-2 opacity-80">(Je monte à Paris ou tu descends au soleil ?)</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 h-20">
+                    <button id="yesBtn" class="bg-white text-rose-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-rose-50 transform hover:scale-110 transition-all duration-200">
+                        OUI bien sûr !
+                    </button>
+                    <button id="noBtn" class="bg-rose-800/50 text-white py-3 px-8 rounded-full shadow-lg cursor-pointer transition-all duration-200" onmouseover="moveButton()">
+                        Non (Impossible)
+                    </button>
+                </div>
+                
+                <div id="success-msg" class="hidden mt-6 animate-bounce">
+                    <p class="text-2xl font-bold">🎉 Trop hâte ! 🎉</p>
+                    <p class="text-sm">Le 83 arrive en force !</p>
+                </div>
+            </div>
+            
+            <!-- Decorative circles -->
+            <div class="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+            <div class="absolute bottom-0 left-0 -ml-10 -mb-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+        </div>
+
+        <footer class="text-center mt-12 text-slate-500 text-sm">
+            <p>Fait avec 💖 par ton Toulonnais</p>
+            <p class="text-xs mt-1">Spécialement pour le 95</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // 1. Floating Hearts Logic
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            document.getElementById('hearts-container').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        setInterval(createHeart, 500);
+
+        // 2. Timer Logic (Set to 1 week ago)
+        const startDate = new Date();
+        startDate.setDate(startDate.getDate() - 7); // Exactly 7 days ago
+        // Adjust to a likely evening time like 20:00
+        startDate.setHours(20, 0, 0, 0);
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // 3. Playful Button Logic
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const successMsg = document.getElementById('success-msg');
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            // Just make it jump a bit within the container on desktop, or fixed on mobile
+            // Simple approach: changes absolute position if needed, but for simplicity in this flow,
+            // we will just swap text or make it run away slightly.
+            
+            const randomX = Math.floor(Math.random() * 200) - 100;
+            const randomY = Math.floor(Math.random() * 200) - 100;
+            
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+        
+        // Also support touch for mobile
+        noBtn.addEventListener('touchstart', (e) => {
+             e.preventDefault(); // prevent clicking
+             moveButton();
+        });
+
+        yesBtn.addEventListener('click', () => {
+            successMsg.classList.remove('hidden');
+            yesBtn.innerText = "C'est noté ! ❤️";
+            noBtn.style.display = 'none';
+            
+            // Explosion of hearts
+            for(let i=0; i<30; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        });
+
+    </script>
+</body>
+</html>
