@@ -222,16 +222,22 @@
             <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 shadow-inner flex flex-col gap-3">
                 <p class="text-[10px] text-center text-slate-400 font-bold uppercase mb-2">Lundi 5 — 08:55</p>
                 
-                <!-- Louanne -->
-                <div class="flex items-end gap-2">
-                    <div class="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-white text-[10px] font-bold shrink-0">L</div>
-                    <div class="message-bubble msg-received">
-                        <p>Narcissique que t'es 👀</p>
+                <!-- Louanne (Reply to your story) -->
+                <div class="flex flex-col gap-1">
+                    <div class="flex items-center gap-2 ml-8 mb-1 opacity-60">
+                         <div class="w-3 h-4 border border-slate-400 rounded-sm"></div>
+                         <p class="text-[9px] text-slate-500 uppercase font-bold tracking-wide">A répondu à votre story</p>
+                    </div>
+                    <div class="flex items-end gap-2">
+                        <div class="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-white text-[10px] font-bold shrink-0">L</div>
+                        <div class="message-bubble msg-received">
+                            <p>Narcissique que t'es 👀</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- You -->
-                <div class="flex flex-col gap-1 items-end mt-1">
+                <div class="flex flex-col gap-1 items-end mt-2">
                     <div class="message-bubble msg-sent">
                         <p>mais vrm pas</p>
                     </div>
@@ -240,13 +246,12 @@
                     </div>
                 </div>
 
-                <!-- Story Reply Context -->
-                <div class="text-center my-3">
-                    <span class="bg-slate-200 text-slate-500 text-[9px] px-2 py-1 rounded-full uppercase tracking-wider font-bold">Story Reply</span>
-                </div>
-
                 <!-- You Story Reply -->
-                <div class="flex flex-col items-end gap-1">
+                <div class="flex flex-col items-end gap-1 mt-4">
+                     <div class="flex items-center gap-2 mb-1 opacity-60 mr-1">
+                         <p class="text-[9px] text-slate-500 uppercase font-bold tracking-wide">Vous avez répondu à sa story</p>
+                         <div class="w-3 h-4 border border-rose-400 rounded-sm"></div>
+                    </div>
                     <div class="message-bubble msg-sent bg-gradient-to-r from-pink-500 to-rose-500">
                         <p>on en parle ou ? 😏</p>
                     </div>
@@ -379,7 +384,7 @@
         </div>
 
         <footer class="text-center mt-12 mb-8 text-white/60 text-[10px] font-semibold tracking-widest uppercase">
-            Fait avec ❤️ pour Louanne • Est. 2026
+            Fait avec ❤️ par Rayhan pour Louanne • Est. 2026
         </footer>
 
     </main>
