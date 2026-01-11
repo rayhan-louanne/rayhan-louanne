@@ -14,8 +14,9 @@
         }
         body {
             font-family: 'Nunito', sans-serif;
-            background: #0f0c29;
-            background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
+            /* More romantic gradient: Deep purple to romantic pink/red */
+            background: #2c003e;
+            background: linear-gradient(to bottom, #2c003e, #510a32, #2c003e);
             min-height: 100vh;
             color: #333;
             overflow-x: hidden;
@@ -76,14 +77,16 @@
             perspective: 1000px;
         }
         .ticket {
-            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
             border-radius: 16px;
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            border: 1px solid rgba(255,255,255,0.5);
         }
         .ticket:hover {
             transform: rotateY(10deg) rotateX(5deg) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.3);
         }
         .tear-line {
             border-top: 2px dashed rgba(255,255,255,0.6);
@@ -95,7 +98,7 @@
             top: -10px;
             width: 20px;
             height: 20px;
-            background-color: #302b63; /* Match body bg roughly */
+            background-color: #2c003e; /* Match body bg roughly */
             border-radius: 50%;
         }
         .tear-line::before { left: -10px; }
@@ -127,6 +130,33 @@
         .heart-beat {
             animation: pulse-soft 2s infinite ease-in-out;
         }
+
+        /* Float Animation for Avatar */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Staggered Entrance Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .stagger-1 { animation: fadeInUp 0.8s ease-out forwards; animation-delay: 0.1s; opacity: 0; }
+        .stagger-2 { animation: fadeInUp 0.8s ease-out forwards; animation-delay: 0.3s; opacity: 0; }
+        .stagger-3 { animation: fadeInUp 0.8s ease-out forwards; animation-delay: 0.5s; opacity: 0; }
+        .stagger-4 { animation: fadeInUp 0.8s ease-out forwards; animation-delay: 0.7s; opacity: 0; }
+        .stagger-5 { animation: fadeInUp 0.8s ease-out forwards; animation-delay: 0.9s; opacity: 0; }
         
         /* Mobile Tweaks */
         @media (max-width: 640px) {
@@ -136,6 +166,11 @@
                 border-radius: 20px;
             }
             h1 { font-size: 2.5rem !important; }
+            /* Better spacing on mobile */
+            .container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -144,11 +179,11 @@
     <!-- Intro Overlay -->
     <div id="intro-overlay">
         <div class="text-center px-6">
-            <span class="text-6xl mb-4 block animate-bounce">💌</span>
-            <h1 class="text-white text-3xl font-bold mb-2 modern-font">Un message pour Louanne</h1>
-            <p class="text-gray-400 mb-8 text-sm">Active le son (dans ta tête) et clique</p>
-            <button id="startBtn" class="bg-white text-purple-900 px-8 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-105 transition-transform active:scale-95">
-                Ouvrir la surprise ✨
+            <span class="text-7xl mb-4 block animate-pulse">💝</span>
+            <h1 class="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 to-white text-4xl font-bold mb-3 modern-font drop-shadow-lg">Pour Louanne</h1>
+            <p class="text-rose-200 mb-8 text-base font-light italic">"Parce que 836 km c'est rien..."</p>
+            <button id="startBtn" class="bg-white/10 backdrop-blur-md border border-white/50 text-white px-8 py-4 rounded-full font-bold shadow-[0_0_30px_rgba(244,63,94,0.5)] hover:bg-white hover:text-rose-600 transition-all duration-300 active:scale-95 animate-pulse">
+                Ouvrir son monde ✨
             </button>
         </div>
     </div>
@@ -159,21 +194,25 @@
     <main class="container mx-auto px-4 py-8 max-w-2xl relative z-10 hidden opacity-0 transition-opacity duration-1000" id="main-content">
         
         <!-- Header -->
-        <div class="text-center mb-8 pt-4">
+        <div class="text-center mb-8 pt-4 stagger-1">
             <div class="inline-block relative">
-                <div class="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full blur opacity-75"></div>
-                <img src="https://api.dicebear.com/7.x/micah/svg?seed=Louanne&backgroundColor=ffdfbf" alt="Louanne" class="relative w-20 h-20 rounded-full border-4 border-white shadow-xl mx-auto mb-4 bg-white">
+                <div class="absolute -inset-4 bg-gradient-to-r from-rose-500 via-red-500 to-purple-600 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                <!-- Avatar: Curly hair, brown/dark eyes, male vibe (Updated) -->
+                <img src="https://api.dicebear.com/7.x/micah/svg?seed=Felix&hair=curly&baseColor=f9c9b6&hairColor=3e2723&mouth=smile&eyes=round&eyebrows=up" alt="Moi" class="relative w-24 h-24 rounded-full border-4 border-rose-300 shadow-2xl mx-auto mb-4 bg-white animate-float z-10">
+                <div class="absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-lg z-20 animate-bounce">
+                    ❤️
+                </div>
             </div>
-            <h1 class="text-5xl text-white handwriting mb-1 drop-shadow-md">Salut la Miss 95</h1>
+            <h1 class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-rose-200 to-white handwriting mb-2 drop-shadow-md mt-2">Ma Miss 95</h1>
             <div class="flex justify-center items-center gap-2">
-                <span class="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-white/80 text-xs font-semibold border border-white/20">
-                    Déjà 1 semaine ❤️
+                <span class="bg-rose-500/30 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-xs font-bold border border-rose-400/30 shadow-[0_0_15px_rgba(244,63,94,0.4)] flex items-center gap-2">
+                    <span class="animate-pulse">✨</span> Déjà 1 semaine <span class="animate-pulse">✨</span>
                 </span>
             </div>
         </div>
 
         <!-- 3D Tilt Card: The Chat -->
-        <div class="glass-card p-6 mb-6 tilt-element" data-tilt>
+        <div class="glass-card p-6 mb-6 tilt-element stagger-2" data-tilt>
             <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2 modern-font">
                 <span class="text-2xl">📱</span> La preuve du crime
             </h2>
@@ -214,27 +253,29 @@
         </div>
 
         <!-- 3D Card: Distance & Map -->
-        <div class="glass-card p-6 mb-6 tilt-element overflow-hidden relative">
+        <div class="glass-card p-6 mb-6 tilt-element overflow-hidden relative stagger-3">
             <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
             <div class="absolute bottom-0 left-0 w-32 h-32 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
             
             <div class="flex justify-between items-center px-4 relative z-10">
                 <div class="text-center">
-                    <div class="text-4xl mb-2">☀️</div>
+                    <div class="text-4xl mb-2 animate-bounce">☀️</div>
                     <div class="font-bold text-slate-700">Toulon</div>
                     <div class="text-xs text-slate-500 font-mono">83000</div>
                 </div>
                 
                 <div class="flex-1 px-4 flex flex-col items-center">
-                    <div class="text-rose-500 font-bold text-xl mb-1 handwriting">Loin des yeux...</div>
-                    <div class="w-full h-1 bg-slate-200 rounded-full relative overflow-hidden">
-                        <div class="absolute h-full bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600 w-1/2 animate-[shimmer_2s_infinite]"></div>
+                    <div class="text-rose-500 font-bold text-xl mb-1 handwriting whitespace-nowrap">...mais près du ❤️</div>
+                    <div class="w-full h-1 bg-rose-100 rounded-full relative overflow-hidden">
+                        <div class="absolute h-full bg-gradient-to-r from-rose-400 to-purple-600 w-full animate-pulse"></div>
+                        <!-- Little moving plane/heart -->
+                        <div class="absolute top-1/2 -translate-y-1/2 text-xs animate-[float_3s_linear_infinite] w-full text-center">✈️</div>
                     </div>
-                    <div class="text-xs text-slate-400 mt-1 font-mono">836 km</div>
+                    <div class="text-xs text-rose-400 mt-1 font-mono font-bold">836 km</div>
                 </div>
 
                 <div class="text-center">
-                    <div class="text-4xl mb-2">🗼</div>
+                    <div class="text-4xl mb-2 animate-pulse">🗼</div>
                     <div class="font-bold text-slate-700">Paris</div>
                     <div class="text-xs text-slate-500 font-mono">95000</div>
                 </div>
@@ -242,7 +283,7 @@
         </div>
 
         <!-- Timer Section -->
-        <div class="glass-card p-5 mb-8 border-l-4 border-rose-500 shadow-lg">
+        <div class="glass-card p-5 mb-8 border-l-4 border-rose-500 shadow-lg stagger-4">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="font-bold text-slate-700 flex items-center gap-2">
                     <span>⏱️</span> Narcissique depuis...
@@ -269,7 +310,7 @@
         </div>
 
         <!-- TICKET FEVRIER (The 3D Element) -->
-        <div class="mb-8 perspective-1000 group cursor-pointer" id="ticket-section">
+        <div class="mb-8 perspective-1000 group cursor-pointer stagger-5" id="ticket-section">
             <div class="ticket p-6 text-slate-900 transform transition-transform duration-500 hover:rotate-y-12 shadow-2xl relative overflow-hidden">
                 <!-- Glossy effect -->
                 <div class="absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent opacity-50 pointer-events-none"></div>
@@ -313,15 +354,15 @@
         </div>
 
         <!-- The Interaction -->
-        <div class="glass-card p-8 text-center relative overflow-hidden ring-2 ring-white/50">
+        <div class="glass-card p-8 text-center relative overflow-hidden ring-2 ring-white/50 stagger-5">
             <h2 class="text-2xl font-bold text-slate-800 mb-2 modern-font">Une dernière question...</h2>
             <p class="text-slate-600 mb-8 text-sm">
                 Vu que je monte te voir en Février, est-ce qu'on valide ce duo officiellement ?
             </p>
             
             <div class="h-40 relative flex items-center justify-center">
-                <button id="yesBtn" class="bg-gradient-to-r from-rose-500 to-purple-600 text-white font-bold py-3 px-12 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all z-20 text-lg">
-                    OUI (Bien sûr)
+                <button id="yesBtn" class="bg-gradient-to-r from-rose-500 via-pink-500 to-purple-600 text-white font-bold py-4 px-12 rounded-full shadow-[0_0_20px_rgba(244,63,94,0.6)] hover:shadow-[0_0_30px_rgba(244,63,94,0.8)] transform hover:scale-110 transition-all z-20 text-lg animate-pulse border-2 border-white/30 backdrop-blur-sm">
+                    OUI (Évidemment ❤️)
                 </button>
                 
                 <button id="noBtn" class="bg-slate-200 text-slate-500 py-2 px-6 rounded-full text-xs font-bold absolute hover:bg-slate-300 transition-colors z-10 border border-slate-300">
@@ -335,8 +376,8 @@
             </div>
         </div>
 
-        <footer class="text-center mt-12 mb-8 text-white/40 text-[10px] font-semibold tracking-widest uppercase">
-            Designed for Louanne • Est. 2024
+        <footer class="text-center mt-12 mb-8 text-white/60 text-[10px] font-semibold tracking-widest uppercase">
+            Fait avec ❤️ pour Louanne • Est. 2026
         </footer>
 
     </main>
@@ -376,22 +417,30 @@
                 y: Math.random() * canvas.height,
                 radius: Math.random() * 1.5,
                 alpha: Math.random(),
-                speed: Math.random() * 0.5
+                speed: Math.random() * 0.5,
+                isHeart: Math.random() > 0.8 // 20% chance to be a heart
             });
         }
 
         function animateStars() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'white';
             
             stars.forEach(star => {
                 star.y -= star.speed;
                 if(star.y < 0) star.y = canvas.height;
                 
                 ctx.globalAlpha = star.alpha;
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fill();
+                
+                if (star.isHeart) {
+                    ctx.fillStyle = '#ff9a9e';
+                    ctx.font = (star.radius * 8) + "px Arial";
+                    ctx.fillText("❤️", star.x, star.y);
+                } else {
+                    ctx.fillStyle = 'white';
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
             });
             requestAnimationFrame(animateStars);
         }
