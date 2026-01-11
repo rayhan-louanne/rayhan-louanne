@@ -87,7 +87,7 @@
             </h2>
             
             <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-inner flex flex-col gap-4">
-                <p class="text-xs text-center text-slate-400 font-semibold uppercase tracking-wider mb-2">Il y a 7 jours</p>
+                <p class="text-xs text-center text-slate-400 font-semibold uppercase tracking-wider mb-2">Lundi 5 — 08:55</p>
                 
                 <!-- Her Message -->
                 <div class="flex items-end gap-2">
@@ -261,11 +261,15 @@
 
         setInterval(createHeart, 600);
 
-        // 2. Timer Logic (Set to 1 week ago)
+        // 2. Timer Logic (Set to Monday 5th at 8:55)
         const startDate = new Date();
-        startDate.setDate(startDate.getDate() - 7); 
-        // Approximate time of the DM (evening usually)
-        startDate.setHours(19, 42, 0, 0);
+        // We assume the user means the most recent "5th" day.
+        // If today is before the 5th, go back to last month.
+        if (startDate.getDate() < 5) {
+            startDate.setMonth(startDate.getMonth() - 1);
+        }
+        startDate.setDate(5); 
+        startDate.setHours(8, 55, 0, 0);
 
         function updateTimer() {
             const now = new Date();
